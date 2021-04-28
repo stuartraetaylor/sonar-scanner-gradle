@@ -96,9 +96,9 @@ public class SonarQubePlugin implements Plugin<Project> {
       .computeSonarProperties());
 
     sonarQubeTask.mustRunAfter(getJavaTestTasks(project));
-    sonarQubeTask.dependsOn(getJavaCompileTasks(project));
+    sonarQubeTask.mustRunAfter(getJavaCompileTasks(project));
     sonarQubeTask.mustRunAfter(getJacocoTasks(project));
-    sonarQubeTask.dependsOn(getAndroidCompileTasks(project));
+    sonarQubeTask.mustRunAfter(getAndroidCompileTasks(project));
   }
 
   private static Callable<Iterable<? extends Task>> getJacocoTasks(Project project) {
